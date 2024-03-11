@@ -18,7 +18,7 @@ const app =express()
 const port =  process.env.PORT || 3000
 const oneDay = 1000 * 60 * 60 * 24 
 //synchronisation a la base de donnee embarque
-sequelize.sync({force:true}).then( ()=>console.log('base de donnée pret'));
+sequelize.sync().then( ()=>console.log('base de donnée pret'));
 
 //  https://mighty-basin-23915-3716ff42a384.herokuapp.com/api/creation/repertoire
 //session middleware
