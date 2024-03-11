@@ -23,7 +23,7 @@ const fs= require('fs')
 sequelize.sync().then( ()=>console.log('base de donnée pret'));
 
 const options = {
-  key:fs.readFileSync('/certificates/key.pem'),
+  key:fs.readFileSync('./certificates/key.pem'),
   cert: fs.readFileSync('/certificates/cert.pem')
 }
 
