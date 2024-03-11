@@ -24,7 +24,7 @@ sequelize.sync().then( ()=>console.log('base de donnée pret'));
 
 const options = {
   key:fs.readFileSync('./certificates/key.pem'),
-  cert: fs.readFileSync('/certificates/cert.pem')
+  cert: fs.readFileSync('./certificates/cert.pem')
 }
 
 // http://193.203.190.101:3000
