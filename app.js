@@ -1,7 +1,7 @@
-const express = require('express')
+const express = require('express') 
 const cookiesParser = require('cookie-parser')
 const session = require('express-session')
-
+const http=  require('http');
 const favicon=require('serve-favicon')
 const bodyParser=require('body-parser')
 const {sequelize} = require('./src/db/sequelize')
@@ -16,11 +16,18 @@ const cors =require('cors')
 
 const app =express()
 const port =  process.env.PORT || 3000
-const oneDay = 1000 * 60 * 60 * 24 
+const oneDay = 1000 * 60 * 60 * 24
+
+const fs= require('fs')
 //synchronisation a la base de donnee embarque
 sequelize.sync().then( ()=>console.log('base de donnée pret'));
 
-//  https://mighty-basin-23915-3716ff42a384.herokuapp.com/api/creation/repertoire
+const options = {
+  key:fs.readFileSync('/certificates/key.pem'),
+  cert: fs.readFileSync('/certificates/cert.pem')
+}
+
+// http://193.203.190.101:3000
 //session middleware
 global.isConnected = false;
 const corsOptions = {
@@ -186,4 +193,6 @@ app.use(({res})=>{
     res.status(404).json({message})
 })
 
-app.listen(port,()=>console.log(`Notre application Node est démarrée sur : http://localhost:${port}`))
+http.createServer(options,(req,res)=>{
+  
+}).listen(port)
