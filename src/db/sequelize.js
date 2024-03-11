@@ -14,7 +14,7 @@ const { Sequelize, DataTypes } = require('sequelize')
 let sequelize
 
 sequelize = new Sequelize('ma_base_de_donnees', 'mon_utilisateur', 'mon_mot_de_passe', {
-  host: 'srv491492localhost',
+  host: '193.203.190.101',
   dialect: 'mysql',
   dialectOptions: {
     timezone: 'Etc/GMT-2',
