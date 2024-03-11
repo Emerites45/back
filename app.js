@@ -1,7 +1,7 @@
 const express = require('express') 
 const cookiesParser = require('cookie-parser')
 const session = require('express-session')
-const http=  require('http');
+const https=  require('https');
 const favicon=require('serve-favicon')
 const bodyParser=require('body-parser')
 const {sequelize} = require('./src/db/sequelize')
@@ -32,8 +32,8 @@ const options = {
 //session middleware
 global.isConnected = false;
 const corsOptions = {
-    origin: 'https://franceetude-ba444.web.app', // Remplacez par votre/vos origine(s) autorisée(s)
-   
+   // origin: 'https://franceetude-ba444.web.app', // Remplacez par votre/vos origine(s) autorisée(s)
+   origin: '*',
     credentials: true, // Autoriser les cookies pour les requêtes authentifiées (si applicable)
     optionsSuccessStatus: 200, // Code de statut personnalisé pour les requêtes de pré-vol (optionnel)
   };
@@ -194,6 +194,14 @@ app.use(({res})=>{
     res.status(404).json({message})
 })
 
-http.createServer(options,(req,res)=>{
-  
-}).listen(port)
+const sslserver = https.createServer({
+  key: fs.readFileSync(path.join(__dirname,'certificates','key.pem')),
+  cert:fs.readFileSync(path.join(__dirname,'certificates','cert.pem'))
+},app)
+
+sslserver.listen(3000, ()=> console.log('securite ssh '))
+/*
+https.createServer(options,(req,res)=>{
+   res.writeHead(200);
+}).listen(port)*/
+
