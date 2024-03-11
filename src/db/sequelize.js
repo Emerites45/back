@@ -13,9 +13,9 @@ const Abonnementmodels=require("../models/Abonnement")
 const { Sequelize, DataTypes } = require('sequelize')
 let sequelize
 
-sequelize = new Sequelize('r0lp7vs9e0pn9inx', 'iyhhd976otl5awbi', 'k9ydpdwuasuqnia6', {
-  host: 'srv491492',
-  dialect: 'mariadb',
+sequelize = new Sequelize('ma_base_de_donnees', 'mon_utilisateur', 'mon_mot_de_passe', {
+  host: 'srv491492localhost',
+  dialect: 'mysql',
   dialectOptions: {
     timezone: 'Etc/GMT-2',
   },
