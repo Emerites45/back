@@ -13,8 +13,6 @@ const Abonnementmodels=require("../models/Abonnement")
 const { Sequelize, DataTypes } = require('sequelize')
 let sequelize
 
-if(process.env.NODE_ENV ==='production'){  
-  
 sequelize = new Sequelize('r0lp7vs9e0pn9inx', 'iyhhd976otl5awbi', 'k9ydpdwuasuqnia6', {
   host: 'srv491492',
   dialect: 'mariadb',
@@ -23,7 +21,7 @@ sequelize = new Sequelize('r0lp7vs9e0pn9inx', 'iyhhd976otl5awbi', 'k9ydpdwuasuqn
   },
   logging:true
 })
-}
+
 /*
 else{
   
