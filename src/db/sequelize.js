@@ -16,7 +16,7 @@ let sequelize
 if(process.env.NODE_ENV ==='production'){  
   
 sequelize = new Sequelize('r0lp7vs9e0pn9inx', 'iyhhd976otl5awbi', 'k9ydpdwuasuqnia6', {
-  host: 'u3r5w4ayhxzdrw87.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
+  host: 'srv491492',
   dialect: 'mariadb',
   dialectOptions: {
     timezone: 'Etc/GMT-2',
@@ -24,7 +24,7 @@ sequelize = new Sequelize('r0lp7vs9e0pn9inx', 'iyhhd976otl5awbi', 'k9ydpdwuasuqn
   logging:true
 })
 }
-
+/*
 else{
   
  sequelize = new Sequelize('bd', 'root', '', {
@@ -35,7 +35,7 @@ else{
   },
   logging:true
 })
-}
+}*/
 const Pdf=Pdfmodel(sequelize,DataTypes);
 const Pdf_formation=Pdf_formationmodel(sequelize,DataTypes);
 const Video=Videomodel(sequelize,DataTypes);
