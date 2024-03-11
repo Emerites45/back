@@ -12,9 +12,9 @@ const Abonnementmodels=require("../models/Abonnement")
 
 const { Sequelize, DataTypes } = require('sequelize')
 let sequelize
-
+/*
 sequelize = new Sequelize('ma_base_de_donnees', 'mon_utilisateur', 'mon_mot_de_passe', {
-  host: '193.203.190.101',
+  host: 'srv491492localhost',
   dialect: 'mysql',
   dialectOptions: {
     timezone: 'Etc/GMT-2',
@@ -22,8 +22,8 @@ sequelize = new Sequelize('ma_base_de_donnees', 'mon_utilisateur', 'mon_mot_de_p
   logging:true
 })
 
-/*
-else{
+
+else{*/
   
  sequelize = new Sequelize('bd', 'root', '', {
   host: 'bd.sqlite',
@@ -33,7 +33,7 @@ else{
   },
   logging:true
 })
-}*/
+
 const Pdf=Pdfmodel(sequelize,DataTypes);
 const Pdf_formation=Pdf_formationmodel(sequelize,DataTypes);
 const Video=Videomodel(sequelize,DataTypes);
