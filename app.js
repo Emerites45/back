@@ -11,6 +11,7 @@ const expressJwt = require('express-jwt');
 const privatekey=require('./src/db/auth/private_key');
 const sequelizeSession = require('connect-session-sequelize')(session.Store)
 require("dotenv").config();
+const tls = require('tls');
 
 const cors =require('cors')
 
@@ -196,7 +197,8 @@ app.use(({res})=>{
 
 const sslserver = https.createServer({
   key: fs.readFileSync(path.join(__dirname,'certificates','key.pem')),
-  cert:fs.readFileSync(path.join(__dirname,'certificates','cert.pem'))
+  cert:fs.readFileSync(path.join(__dirname,'certificates','cert.pem')),
+  
 },app)
 
 sslserver.listen(3000, ()=> console.log('securite ssh '))
