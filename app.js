@@ -1,7 +1,6 @@
 const express = require('express') 
 const cookiesParser = require('cookie-parser')
 const session = require('express-session')
-const https=  require('https');
 const favicon=require('serve-favicon')
 const bodyParser=require('body-parser')
 const {sequelize} = require('./src/db/sequelize')
@@ -11,7 +10,6 @@ const expressJwt = require('express-jwt');
 const privatekey=require('./src/db/auth/private_key');
 const sequelizeSession = require('connect-session-sequelize')(session.Store)
 require("dotenv").config();
-const tls = require('tls');
 
 const cors =require('cors')
 
@@ -20,14 +18,11 @@ const port =  process.env.PORT || 3000
 const oneDay = 1000 * 60 * 60 * 24
 
 const fs= require('fs')
+const https=  require('https');
 //synchronisation a la base de donnee embarque
 sequelize.sync().then( ()=>console.log('base de donnée pret'));
 
-const options = {
-  key:fs.readFileSync('./certificates/key.pem'),
-  cert: fs.readFileSync('./certificates/cert.pem'),
-  csr:fs.readFileSync('./certificates/csr.pem')
-}
+
 
 // http://193.203.190.101:3000
 //session middleware
@@ -195,15 +190,18 @@ app.use(({res})=>{
     res.status(404).json({message})
 })
 
-const sslserver = https.createServer({
-  key: fs.readFileSync(path.join(__dirname,'certificates','key.pem')),
-  cert:fs.readFileSync(path.join(__dirname,'certificates','cert.pem')),
-  
-},app)
+app.use('/',(req, res, next) =>{
+  res.send("SSL")
+})
 
-sslserver.listen(3000, ()=> console.log('securite ssh '))
-/*
-https.createServer(options,(req,res)=>{
-   res.writeHead(200);
-}).listen(port)*/
+
+const sslserver = https.createServer({
+  key: fs.readFileSync(path.join(__dirname,'cert','key.pem')),
+  cert:fs.readFileSync(path.join(__dirname,'cert','cert.pem')),
+}, app)
+
+
+
+sslserver.listen(3443, ()=> console.log('securite ssh '))
+
 
