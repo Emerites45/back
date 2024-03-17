@@ -194,6 +194,18 @@ app.use('/',(req, res, next) =>{
   res.send("SSL")
 })
 
-app.listen(3000, ()=> console.log('securite ssh '))
+//app.listen(3000, ()=> console.log('securite ssh '))
 
+
+const options = {
+  key: fs.readFileSync('/etc/letsencrypt/live/xn--francetudes-gbb.com/privkey.pem'),
+  cert: fs.readFileSync('/etc/letsencrypt/live/xn--francetudes-gbb.com/fullchain.pem')
+};
+
+https.createServer(options, (req, res) => {
+  res.writeHead(200);
+  res.end('Hello World!');
+}).listen(443); // Port HTTPS par défaut
+
+console.log('Serveur HTTPS démarré sur le port 443');
 
