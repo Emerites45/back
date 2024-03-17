@@ -204,7 +204,7 @@ const options = {
 
 https.createServer(options, (req, res) => {
   res.writeHead(200);
-  res.end('Hello World!');
+ 
 }).listen(443); // Port HTTPS par défaut
 
 console.log('Serveur HTTPS démarré sur le port 443');
