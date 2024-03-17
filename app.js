@@ -194,14 +194,6 @@ app.use('/',(req, res, next) =>{
   res.send("SSL")
 })
 
-
-const sslserver = https.createServer({
-  key: fs.readFileSync(path.join(__dirname,'cert','key.pem')),
-  cert:fs.readFileSync(path.join(__dirname,'cert','cert.pem')),
-}, app)
-
-
-
-sslserver.listen(3443, ()=> console.log('securite ssh '))
+app.listen(3443, ()=> console.log('securite ssh '))
 
 
